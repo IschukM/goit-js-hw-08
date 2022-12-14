@@ -22,24 +22,24 @@ const markup = galleryItems.reduce(
   ''
 );
 
-galleryBox.insertAdjacentHTML('beforeend', markup);
+// galleryBox.insertAdjacentHTML('beforeend', markup);
 
-galleryBox.addEventListener('click', onClick);
+// galleryBox.addEventListener('click', onClick);
 
-function onClick(event) {
-  console.log(event.target);
-  event.preventDefault();
-  if (!event.target.classList.contains('gallery__image')) {
-    return;
-  }
-  const instance = basicLightbox.create(
-    `<div class="modal"><img src="${event.target.dataset.source}" width="800" heigth = "600"></div>`
-  );
-  instance.show();
+// function onClick(event) {
+//   console.log(event.target);
+//   event.preventDefault();
+//   if (!event.target.classList.contains('gallery__image')) {
+//     return;
+//   }
+//   const instance = basicLightbox.create(
+//     `<div class="modal"><img src="${event.target.dataset.source}" width="800" heigth = "600"></div>`
+//   );
+//   instance.show();
 
-  galleryBox.addEventListener('keydown', event => {
-    if (event.code === 'Escape') {
-      instance.close();
-    }
-  });
-}
+//   galleryBox.addEventListener('keydown', event => {
+//     if (event.code === 'Escape') {
+//       instance.close();
+//     }
+//   });
+// }
