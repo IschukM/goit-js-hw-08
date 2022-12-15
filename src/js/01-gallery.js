@@ -9,14 +9,9 @@ const markup = galleryItems.reduce(
   (acc, { preview, original, description }) =>
     acc +
     `<div class="gallery__item">
-  <a class="gallery__link" href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
+  <a class="gallery__item" href="${preview}">
+  <img class="gallery__image" src="${preview}" alt="${description}" />
+</a>
   </div>
 `,
   ''
@@ -24,22 +19,10 @@ const markup = galleryItems.reduce(
 
 galleryBox.insertAdjacentHTML('beforeend', markup);
 
-galleryBox.addEventListener('click', onClick);
-
-function onClick(event) {
-  console.log(event.target);
-  event.preventDefault();
-  if (!event.target.classList.contains('gallery__image')) {
-    return;
-  }
-  const instance = basicLightbox.create(
-    `<div class="modal"><img src="${event.target.dataset.source}" width="800" heigth = "600"></div>`
-  );
-  instance.show();
-
-  galleryBox.addEventListener('keydown', event => {
-    if (event.code === 'Escape') {
-      instance.close();
-    }
-  });
-}
+let gallery = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  captionsData: 'alt',
+});
+gallery.on('show.Simplelightbox');
